@@ -4,9 +4,11 @@ void setup()
   background(0);
   
   speedTape = new SpeedTape();
+  crossHair = new CrossHair();
 }
 
 SpeedTape speedTape;
+CrossHair crossHair;
 
 void draw()
 {
@@ -14,6 +16,16 @@ void draw()
   speedTape.speedTapeIndicator();
   speedTape.speedIndicator();
   speedTape.drawSpeedTape();
+  
+  if(frameCount%20 == 0) {
+  if (keyPressed == false) {
+    if(speedTape.speed > 0) {
+      speedTape.speed -= 1;
+    }
+  }
+  }
+  
+  crossHair.drawCrossHair();
 }
 
 void keyPressed() {

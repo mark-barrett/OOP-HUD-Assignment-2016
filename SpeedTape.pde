@@ -21,23 +21,29 @@ class SpeedTape
   }
   void speedIndicator()
   {
+    stroke(0, 255, 0);
     fill(0);
     rect(speedTape-60, height/2.15, 50, 50);
     fill(0, 204, 0);
     textSize(25);
     text(speed, speedTape-60, height/1.95);
+    triangle(speedTape-10, height/2.15+20, speedTape+3, height/2.15+25, speedTape-10, height/2.15+30);
   }
   
   void speedTapeIndicator()
   {
     for(int i = 0; i<height; i+=60)
     {
-      if(i<height-speedTape) {
-      line(speedTape, height/2-i+this.speed, speedTape-20, height/2-i+this.speed);
+      if(i<1000) {
+      line(speedTape, height/2-i+this.speed*3, speedTape-20, height/2-i+this.speed*3);
       textSize(17);
-      text(i/3, speedTape-50, height/2-i+this.speed);
+      text(i/3, speedTape-50, height/2-i+this.speed*3);
       }
     }
+    stroke(0);
+    fill(0);
+    rect(0, 0, width, 99);
+    rect(0, height-99, width, 99);
   }
   void increaseSpeed()
   {
