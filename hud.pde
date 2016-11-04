@@ -10,7 +10,10 @@ SpeedTape speedTape;
 
 void draw()
 {
+  background(0);
+  speedTape.speedTapeIndicator();
   speedTape.speedIndicator();
+  speedTape.drawSpeedTape();
 }
 
 void keyPressed() {
