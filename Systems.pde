@@ -17,7 +17,7 @@ class Systems
   Systems()
   {
     this.battery = false;
-    this.engine1 = true;
+    this.engine1 = false;
     this.engine2 = false;
   }
   
@@ -67,10 +67,12 @@ class Systems
     rect(160, 435, 67, 67);
     stroke(255, 0 ,0);
     line(155, 502, 185, 502);
+    stroke(0, 255, 0);
   }
   
   void checkEngineAnimation()
   {
+    
     if(mainSystems.engine1 == false)
     {
       strokeWeight(3);
@@ -91,26 +93,23 @@ class Systems
         eng1x = eng1cx - sin(eng1Thetha) * radius;
         eng1y = eng1cy - cos(eng1Thetha) * radius;
         line(eng1cx, eng1cy, eng1x, eng1y);
-        eng1Thetha -= 0.01f;
         
-        if(eng1Thetha < -4)
+        if(eng1Thetha > -4)
         {
-          eng1max = true;
-          while(eng1max == true)
-          {
-          line(eng1cx, eng1cy, eng1x, eng1y);
-          }
+          eng1Thetha -= 0.01f;
         }
       } 
     }
+    /*
     if(mainSystems.engine2 == true)
     {
       if(eng2max == false)
       {
         eng2x = eng1cx - sin(eng2Thetha) * radius;
-        eng2y = eng2cy - cos(eng2Thetha) * radius;
+        eng2y = eng2cy + cos(eng2Thetha) * radius;
         line(eng2cx, eng2cy, eng2x, eng2y);
         eng2Thetha -= 0.01f;
+        println(eng2Thetha);
         
         if(eng2Thetha < -4)
         {
@@ -122,6 +121,7 @@ class Systems
         }
       }
     }
+    */
       
   }
 }

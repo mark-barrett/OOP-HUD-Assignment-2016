@@ -60,9 +60,10 @@ void draw()
     
   if (checkKey('w'))
   {
-    if(mainSystems.engine1 == true && mainSystems.engine2 == true)
+    if(mainSystems.engine1 == true)
     {
-      speedTape.increaseSpeed();    
+      speedTape.increaseSpeed(); 
+      println("Hey");
     }
   }
   }
@@ -102,6 +103,7 @@ void keyReleased()
 
 void mousePressed()
 {
+  //Battery on
   if(mouseX > 20 && mouseX < 95)
   {
     if(mouseY > 20 && mouseY < 80)
@@ -113,6 +115,17 @@ void mousePressed()
       else if(mainSystems.battery == true)
       {
         mainSystems.battery = false;
+      }
+    }
+  }
+  
+  if(mouseX > 120 && mouseX < 195)
+  {
+    if(mouseY > 20 && mouseY < 80)
+    {
+      if(mainSystems.battery == true)
+      {
+        mainSystems.engine1 ^= true;
       }
     }
   }
