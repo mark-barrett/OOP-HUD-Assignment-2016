@@ -6,31 +6,56 @@ void setup()
   speedTape = new SpeedTape();
   crossHair = new CrossHair();
   mainSystems = new Systems();
-  buttons = new Buttons();
+  battery = new Buttons();
+  engine1 = new Buttons();
+  engine2 = new Buttons();
+  
   speedIndicator25 = loadFont("FranklinGothic-Book-25.vlw");
 }
 
 SpeedTape speedTape;
 CrossHair crossHair;
 Systems mainSystems;
-Buttons buttons;
+
+//Loading animation variable
+boolean loadingAnimation = false;
+
+//Declare buttons
+Buttons battery;
+Buttons engine1;
+Buttons engine2;
+
 PFont speedIndicator25;
+
+boolean[] keys = new boolean[1000];
 
 void draw()
 {
-  mainSystems.battery = true;
   background(0);
+  //Draw the speed tape indicator
   speedTape.speedTapeIndicator(mainSystems.battery);
-  speedTape.speedIndicator(mainSystems.battery);
-  speedTape.drawSpeedTape(mainSystems.battery);
-  buttons.drawButton("Battery", mainSystems.battery, 20, 20);
-  buttons.drawButton("1 Hyd", mainSystems.engine1, 120, 20);
-  buttons.drawButton("2 Hyd", mainSystems.engine1, 20, 100);
-  buttons.drawButton("1 Pmp", mainSystems.engine1, 120, 100);
-  buttons.drawButton("2 Pmp", mainSystems.engine1, 20, 180);
-  buttons.drawStarterButton("Eng 1 Start", mainSystems.engine1, 50, 300);
-  buttons.drawStarterButton("Eng 2 Start", mainSystems.engine1, 150, 300);
   
+  //Draw the speed indicator (text)
+  speedTape.speedIndicator(mainSystems.battery);
+  
+  //Draw the speed tape
+  speedTape.drawSpeedTape(mainSystems.battery);
+  
+  //Draw battery button
+  battery.drawButton("Battery", mainSystems.battery, 20, 20);
+  
+  //Draw engine buttons
+  engine1.drawButton("Eng1", mainSystems.engine1, 120, 20);
+  engine2.drawButton("Eng2", mainSystems.engine2, 20, 100);
+  
+  if(frameCount % 5  == 0) {
+    
+  if (checkKey('w'))
+  {
+      speedTape.increaseSpeed();     
+  }
+  }
+    
   if(frameCount%20 == 0) {
   if (keyPressed == false) {
     if(speedTape.speed > 0) {
@@ -39,15 +64,44 @@ void draw()
   }
   }
   
+  //Draw the crosshair
   crossHair.drawCrossHair(mainSystems.battery);
   textSize(15);
+  
+  //Display alerts
   mainSystems.displaySystemAlerts(mainSystems.battery);
 }
 
-void keyPressed() {
-  if (key == CODED) {
-    if (keyCode == UP) {
-      speedTape.increaseSpeed();
+void keyPressed()
+{ 
+  keys[keyCode] = true;
+}
+ 
+void keyReleased()
+{
+  keys[keyCode] = false; 
+}
+
+void mousePressed()
+{
+  if(mouseX > 20 && mouseX < 95)
+  {
+    if(mouseY > 20 && mouseY < 80)
+    {
+      mainSystems.battery ^= true;
     }
   }
+}
+boolean checkKey(int k)
+{
+  if (keys.length >= k) 
+  {
+    return keys[k] || keys[Character.toUpperCase(k)];  
+  }
+  return false;
+}
+
+void loadingAnimation()
+{
+  
 }

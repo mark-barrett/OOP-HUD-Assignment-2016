@@ -32,7 +32,8 @@ class SpeedTape
     rect(speedTape-60, height/2.15, 50, 50);
     fill(0, 204, 0);
     textSize(25);
-    text(speed, speedTape-60, height/1.95);
+    textAlign(LEFT);
+    text(speed, speedTape-57, height/1.95);
     triangle(speedTape-10, height/2.15+20, speedTape+3, height/2.15+25, speedTape-10, height/2.15+30);
     }
   }

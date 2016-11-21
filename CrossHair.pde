@@ -15,6 +15,7 @@ class CrossHair
     {
       textSize(25);
       fill(0, 255, 0);
+      textAlign(CENTER, CENTER);
       text("Standby..", width/2, height/2);
     }
   }
