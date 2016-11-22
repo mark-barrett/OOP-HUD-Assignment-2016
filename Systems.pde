@@ -29,6 +29,7 @@ class Systems
     {
       fill(255, 255, 0);
       text("ENG SHUTDOWN 1", width/2+400, height/2+15);
+      this.eng1Thetha = 0;
     }
     if(this.engine2 == false)
     {
@@ -100,28 +101,23 @@ class Systems
         }
       } 
     }
-    /*
+    
     if(mainSystems.engine2 == true)
     {
       if(eng2max == false)
       {
-        eng2x = eng1cx - sin(eng2Thetha) * radius;
-        eng2y = eng2cy + cos(eng2Thetha) * radius;
+        strokeWeight(2);
+        eng2x = eng2cx - sin(eng2Thetha) * radius;
+        eng2y = eng2cy - cos(eng2Thetha) * radius;
         line(eng2cx, eng2cy, eng2x, eng2y);
-        eng2Thetha -= 0.01f;
-        println(eng2Thetha);
         
-        if(eng2Thetha < -4)
+        if(eng2Thetha > -4)
         {
-          eng2max = true;
-          while(eng2max == true)
-          {
-          line(eng2cx, eng2cy, eng2x, eng2y);
-          }
+          eng2Thetha -= 0.01f;
         }
+    
       }
     }
-    */
       
   }
 }

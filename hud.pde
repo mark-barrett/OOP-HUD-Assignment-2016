@@ -4,6 +4,7 @@ void setup()
   background(0);
   
   speedTape = new SpeedTape();
+  altitudeTape = new AltitudeTape();
   crossHair = new CrossHair();
   mainSystems = new Systems();
   battery = new Buttons();
@@ -11,11 +12,24 @@ void setup()
   engine2 = new Buttons();
   
   speedIndicator25 = loadFont("FranklinGothic-Book-25.vlw");
+  
+  //Importing sound
+  switchSound = new SoundFile(this, "switch.wav");
+  batterySound = new SoundFile(this, "battery.wav");
 }
 
 SpeedTape speedTape;
+AltitudeTape altitudeTape;
 CrossHair crossHair;
 Systems mainSystems;
+
+int time = millis();
+
+import processing.sound.*;
+
+//Declaring sounds
+SoundFile switchSound;
+SoundFile batterySound;
 
 //Loading animation variable
 boolean loadingAnimation = false;
@@ -43,6 +57,12 @@ void draw()
   //Draw the speed tape
   speedTape.drawSpeedTape(mainSystems.battery);
   
+  //Draw the altitude tape
+  altitudeTape.drawAltitudeTape(mainSystems.battery);
+  
+  //Draw degrees
+  altitudeTape.drawDegrees(mainSystems.battery);
+  
   //Draw battery button
   battery.drawButton("Battery", mainSystems.battery, 20, 20);
   
@@ -60,10 +80,9 @@ void draw()
     
   if (checkKey('w'))
   {
-    if(mainSystems.engine1 == true)
+    if(mainSystems.engine1 == true && mainSystems.engine2 == true)
     {
       speedTape.increaseSpeed(); 
-      println("Hey");
     }
   }
   }
@@ -111,6 +130,8 @@ void mousePressed()
       if(mainSystems.battery == false)
       {
         loadingAnimation = true;
+        switchSound.play(); 
+        batterySound.play();
       }
       else if(mainSystems.battery == true)
       {
@@ -119,6 +140,7 @@ void mousePressed()
     }
   }
   
+  //Eng1 on
   if(mouseX > 120 && mouseX < 195)
   {
     if(mouseY > 20 && mouseY < 80)
@@ -126,6 +148,19 @@ void mousePressed()
       if(mainSystems.battery == true)
       {
         mainSystems.engine1 ^= true;
+        switchSound.play();
+      }
+    }
+  }
+  //Eng 2 on
+  if(mouseX > 20 && mouseX < 95)
+  {
+    if(mouseY > 100 && mouseY < 160)
+    {
+      if(mainSystems.battery == true)
+      {
+        mainSystems.engine2 ^= true;
+        switchSound.play();
       }
     }
   }
