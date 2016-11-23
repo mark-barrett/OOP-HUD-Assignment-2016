@@ -16,7 +16,7 @@ class Systems
 
   Systems()
   {
-    this.battery = false;
+    this.battery = true;
     this.engine1 = false;
     this.engine2 = false;
   }
@@ -25,17 +25,22 @@ class Systems
   {
     if(power == true)
     {
-    if(this.engine1 == false)
-    {
-      fill(255, 255, 0);
-      text("ENG SHUTDOWN 1", width/2+400, height/2+15);
-      this.eng1Thetha = 0;
-    }
-    if(this.engine2 == false)
-    {
-      fill(255, 255, 0);
-      text("ENG SHUTDOWN 2", width/2+400, height/2+30);
-    }
+      fill(0, 255, 0);
+      textSize(25);
+      text("EICAS", 48, 185);
+      noFill();
+      rect(20, 200, 250, 250);
+      if(this.engine1 == false)
+      {
+        fill(255, 255, 0);
+        text("ENG SHUTDOWN 1", width/2+500, height/2+15);
+        this.eng1Thetha = 0;
+      }
+      if(this.engine2 == false)
+      {
+        fill(255, 255, 0);
+        text("ENG SHUTDOWN 2", width/2+500, height/2+30);
+      }
     }
   }
   
@@ -57,8 +62,8 @@ class Systems
     text("Engine 1", 75, 180);
     text("Engine 2", 195, 180);
     fill(0);
-    ellipse(70, 250, 100, 100);
-    ellipse(190, 250, 100, 100);
+    ellipse(80, 260, 100, 100);
+    ellipse(290, 260, 100, 100);
     stroke(0);
     rect(17, 198, 50, 50);
     stroke(255, 0 ,0);

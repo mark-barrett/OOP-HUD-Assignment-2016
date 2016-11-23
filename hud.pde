@@ -62,6 +62,9 @@ void draw()
   //Draw the altitude tape
   altitudeTape.drawAltitudeTape(mainSystems.battery);
   
+  //Draw Horizon
+  artificialHorizon.drawHorizon(mainSystems.battery);
+  
   //Draw degrees
   artificialHorizon.drawDegrees(mainSystems.battery);
   

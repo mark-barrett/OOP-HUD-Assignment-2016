@@ -7,6 +7,7 @@ class CrossHair
     if(power == true)
     {
       strokeWeight(2);
+      noFill();
       crosshair = createShape();
       crosshair.beginShape();
       crosshair.vertex(5,10);

@@ -16,6 +16,7 @@ class AltitudeTape
       line(altitudeTape, 100, altitudeTape, 550);
       line(altitudeTape+60, 100, altitudeTape, 100);
       line(altitudeTape+60, 550, altitudeTape, 550);
+      text("ALT", altitudeTape+15, 575);
     }
   }
       

@@ -20,6 +20,7 @@ class SpeedTape
     line(speedTape, 100, speedTape, 550);
     line(speedTape-60, 100, speedTape, 100);
     line(speedTape-60, 550, speedTape, 550);
+    text("IAS", speedTape-50, 575);
     }
   }
   void speedIndicator(boolean power)
