@@ -8,6 +8,7 @@ void setup()
   crossHair = new CrossHair();
   mainSystems = new Systems();
   artificialHorizon = new ArtificialHorizon();
+  rollIndicator = new RollIndicator();
   battery = new Buttons();
   engine1 = new Buttons();
   engine2 = new Buttons();
@@ -24,8 +25,10 @@ AltitudeTape altitudeTape;
 ArtificialHorizon artificialHorizon;
 CrossHair crossHair;
 Systems mainSystems;
+RollIndicator rollIndicator;
 
 float pitch = 0;
+float roll = 0;
 
 int time = millis();
 
@@ -66,6 +69,7 @@ void draw()
   
   altitudeTape.drawAltitudeTapeIndicator(mainSystems.battery);
   
+  
   //Draw Horizon
   artificialHorizon.drawHorizon(mainSystems.battery);
   
@@ -75,6 +79,8 @@ void draw()
   fill(0);
   rect(200, 0, width-200, 99);
   rect(0, height-99, width, 99);
+  
+  rollIndicator.drawRollIndicator(mainSystems.battery);
   
   //Draw battery button
   battery.drawButton("Battery", mainSystems.battery, 20, 20);
@@ -91,6 +97,7 @@ void draw()
   
   //Display alerts
   mainSystems.displaySystemAlerts(mainSystems.battery);
+  
   
   if(mainSystems.animate == true && mainSystems.battery == true)
   {
@@ -117,6 +124,22 @@ void draw()
   if(checkKey('k'))
   {
     pitch -= 0.75;
+  }
+  
+  if(checkKey('l'))
+  {
+    if(pitch > 0)
+    {
+      roll += 0.005;
+    }
+  }
+  
+  if(checkKey('j'))
+  {
+    if(pitch > 0)
+    {
+      roll -= 0.005;
+    }
   }
     
     

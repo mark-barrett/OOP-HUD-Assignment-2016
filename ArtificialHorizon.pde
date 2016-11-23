@@ -46,18 +46,22 @@ class ArtificialHorizon
       }
       else
       {
-        pushMatrix();
-        translate(width/3.5+2, 100+pitch);
-        shape(sky, 0, 0);
-        popMatrix();
-        
-        pushMatrix();
-        translate(width/3.5+2, height/2+pitch);
-        shape(ground, 0, 0);
-        popMatrix();
-        
-        stroke(0, 255, 0);
-        fill(0, 255, 0);
+          sky.rotate(roll);
+          pushMatrix();
+          translate(width/3.5+2, 100+pitch);
+          shape(sky, 0, 0);
+          popMatrix();
+          
+          ground.rotate(roll);
+          pushMatrix();
+          shapeMode(CENTER);
+          translate(width/3.5+2, height/2+pitch);
+          shape(ground, 0, 0);
+          popMatrix();
+          
+          stroke(0, 255, 0);
+          fill(0, 255, 0);
+          
       }
         
     }
@@ -80,6 +84,8 @@ class ArtificialHorizon
       else
       {
         strokeWeight(1);
+        pushMatrix();
+        rotate(roll);
         line(width/2-120, height/2-100+pitch, width/2+120, height/2-100+pitch);
         text("10", width/2+130, height/2-90+pitch);
         text("10", width/2-160, height/2-90+pitch);
@@ -92,6 +98,7 @@ class ArtificialHorizon
         line(width/2-120, height/2+200+pitch, width/2+120, height/2+200+pitch);
         text("20", width/2+130, height/2+210+pitch);
         text("20", width/2-160, height/2+210+pitch);
+        popMatrix();
       }
     }
   }
