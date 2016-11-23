@@ -46,7 +46,7 @@ class ArtificialHorizon
   }
   void drawDegrees(boolean power) 
   {
-    if(power == true)
+    if(power == true && mainSystems.finishedAnimation == true)
     {
       if(x != 120)
       {

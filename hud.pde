@@ -81,6 +81,15 @@ void draw()
   //Check for animation
   mainSystems.checkEngineAnimation();
   
+  //Display alerts
+  mainSystems.displaySystemAlerts(mainSystems.battery);
+  
+  if(mainSystems.animate == true && mainSystems.battery == true)
+  {
+    mainSystems.animateEICAS();
+    mainSystems.x--;
+  }
+  
   if(frameCount % 5  == 0) {
     
   if (checkKey('w'))
@@ -103,9 +112,6 @@ void draw()
   //Draw the crosshair
   crossHair.drawCrossHair(mainSystems.battery);
   textSize(15);
-  
-  //Display alerts
-  mainSystems.displaySystemAlerts(mainSystems.battery);
   
   //If the battery has been pressed the start the loading animation
   if(loadingAnimation == true)
