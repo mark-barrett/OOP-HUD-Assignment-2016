@@ -1,15 +1,28 @@
 class CrossHair
 {
+  PShape crosshair;
+  
   void drawCrossHair(boolean power)
   {
     if(power == true)
     {
-    fill(0);
-    rect(width/2, height/2, 10, 10);
-    rect(width/2-95, height/2, 80, 10);
-    rect(width/2-25, height/2, 10, 30);
-    rect(width/2+25, height/2, 80, 10);
-    rect(width/2+25, height/2, 10, 30);
+      strokeWeight(2);
+      crosshair = createShape();
+      crosshair.beginShape();
+      crosshair.vertex(5,10);
+      crosshair.vertex(5,5);
+      crosshair.vertex(105, 5);
+      crosshair.vertex(122.5,-10);
+      crosshair.vertex(140, 5);
+      crosshair.vertex(240, 5);
+      crosshair.vertex(240, 10);
+      crosshair.endShape();
+      
+      pushMatrix();
+      translate(width/2, height/2);
+      shape(crosshair, -122.5, -10);
+      popMatrix();
+      
     }
     else
     {

@@ -7,12 +7,12 @@ class Systems
   boolean eng2max = false;
   
   float eng1x, eng1y, eng1Thetha = 0;
-  float eng1cx = 85;
-  float eng1cy = 500;
+  float eng1cx = 70;
+  float eng1cy = 250;
   float eng2x, eng2y, eng2Thetha = 0;
-  float eng2cx = 230;
-  float eng2cy = 500;
-  float radius = 62.5;
+  float eng2cx = 190;
+  float eng2cy = 250;
+  float radius = 50;
 
   Systems()
   {
@@ -54,20 +54,20 @@ class Systems
     strokeWeight(2);
     stroke(0, 255, 0);
     fill(0, 255, 0);
-    text("Engine 1", 85, 410);
-    text("Engine 2", 230, 410);
+    text("Engine 1", 75, 180);
+    text("Engine 2", 195, 180);
     fill(0);
-    ellipse(85, 500, 125, 125);
-    ellipse(230, 500, 125, 125);
+    ellipse(70, 250, 100, 100);
+    ellipse(190, 250, 100, 100);
     stroke(0);
-    rect(15, 435, 67, 67);
+    rect(17, 198, 50, 50);
     stroke(255, 0 ,0);
-    line(10, 502, 35, 502);
+    line(10, 248, 30, 248);
     fill(0);
     stroke(0);
-    rect(160, 435, 67, 67);
+    rect(137, 198, 50, 50);
     stroke(255, 0 ,0);
-    line(155, 502, 185, 502);
+    line(130, 248, 150, 248);
     stroke(0, 255, 0);
   }
   
@@ -78,13 +78,13 @@ class Systems
     {
       strokeWeight(3);
       stroke(0, 255, 0);
-      line(85, 500, 85, 440);
+      line(70, 250, 70, 202);
     }
     if(mainSystems.engine2 == false)
     {
       strokeWeight(3);
       stroke(0, 255, 0);
-      line(230, 500, 230, 440);
+      line(190, 250, 190, 202);
     }
     
     if(mainSystems.engine1 == true)

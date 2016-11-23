@@ -7,6 +7,7 @@ void setup()
   altitudeTape = new AltitudeTape();
   crossHair = new CrossHair();
   mainSystems = new Systems();
+  artificialHorizon = new ArtificialHorizon();
   battery = new Buttons();
   engine1 = new Buttons();
   engine2 = new Buttons();
@@ -20,6 +21,7 @@ void setup()
 
 SpeedTape speedTape;
 AltitudeTape altitudeTape;
+ArtificialHorizon artificialHorizon;
 CrossHair crossHair;
 Systems mainSystems;
 
@@ -61,7 +63,7 @@ void draw()
   altitudeTape.drawAltitudeTape(mainSystems.battery);
   
   //Draw degrees
-  altitudeTape.drawDegrees(mainSystems.battery);
+  artificialHorizon.drawDegrees(mainSystems.battery);
   
   //Draw battery button
   battery.drawButton("Battery", mainSystems.battery, 20, 20);
