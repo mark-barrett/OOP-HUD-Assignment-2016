@@ -19,7 +19,7 @@ class Systems
 
   Systems()
   {
-    this.battery = false;
+    this.battery = true;
     this.engine1 = false;
     this.engine2 = false;
   }

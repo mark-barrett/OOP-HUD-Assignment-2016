@@ -25,6 +25,8 @@ ArtificialHorizon artificialHorizon;
 CrossHair crossHair;
 Systems mainSystems;
 
+float pitch = 0;
+
 int time = millis();
 
 import processing.sound.*;
@@ -62,11 +64,17 @@ void draw()
   //Draw the altitude tape
   altitudeTape.drawAltitudeTape(mainSystems.battery);
   
+  altitudeTape.drawAltitudeTapeIndicator(mainSystems.battery);
+  
   //Draw Horizon
   artificialHorizon.drawHorizon(mainSystems.battery);
   
   //Draw degrees
   artificialHorizon.drawDegrees(mainSystems.battery);
+  noStroke();
+  fill(0);
+  rect(200, 0, width-200, 99);
+  rect(0, height-99, width, 99);
   
   //Draw battery button
   battery.drawButton("Battery", mainSystems.battery, 20, 20);
@@ -100,6 +108,17 @@ void draw()
     }
   }
   }
+  
+  if(checkKey('i'))
+  {
+    pitch += 0.75;
+  }
+  
+  if(checkKey('k'))
+  {
+    pitch -= 0.75;
+  }
+    
     
   if(frameCount%20 == 0) {
   if (keyPressed == false) {
