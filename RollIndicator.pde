@@ -19,8 +19,7 @@ class RollIndicator
       translate(width/2, 50);
       shape(bottomRoll, 0,0);
       popMatrix();
-      
-      
+         
     }
     }
 }

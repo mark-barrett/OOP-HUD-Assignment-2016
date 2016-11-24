@@ -55,6 +55,24 @@ boolean[] keys = new boolean[1000];
 void draw()
 {
   background(0);
+  //Draw Horizon
+  artificialHorizon.drawHorizon(mainSystems.battery);
+  
+  //Draw degrees
+  artificialHorizon.drawDegrees(mainSystems.battery);
+  
+  //Draw rect to block out artificial horizon on speed side
+  fill(0);
+  stroke(0);
+  rect(0,0,speedTape.speedTape, height);
+  stroke(0, 255, 0);
+  
+  //Draw rect to block out artificial horizon on altitude side
+  fill(0);
+  stroke(0);
+  rect(altitudeTape.altitudeTape, 0 ,500, height);
+  stroke(0, 255, 0);
+  
   //Draw the speed tape indicator
   speedTape.speedTapeIndicator(mainSystems.battery);
   
@@ -69,12 +87,7 @@ void draw()
   
   altitudeTape.drawAltitudeTapeIndicator(mainSystems.battery);
   
-  
-  //Draw Horizon
-  artificialHorizon.drawHorizon(mainSystems.battery);
-  
-  //Draw degrees
-  artificialHorizon.drawDegrees(mainSystems.battery);
+  altitudeTape.drawAltitudeIndicator(mainSystems.battery);
   noStroke();
   fill(0);
   rect(200, 0, width-200, 99);
@@ -126,7 +139,7 @@ void draw()
     pitch -= 0.75;
   }
   
-  if(checkKey('l'))
+  if(checkKey('j'))
   {
     if(pitch > 0)
     {
@@ -134,7 +147,7 @@ void draw()
     }
   }
   
-  if(checkKey('j'))
+  if(checkKey('l'))
   {
     if(pitch > 0)
     {
