@@ -2,7 +2,7 @@
 class AltitudeTape
 {
   //Fields
-  int altitude = 0;
+  float altitude = 0;
   float altitudeTape = width-340;
   float x = 0;
   boolean animate = true;
@@ -51,15 +51,24 @@ class AltitudeTape
       fill(0, 204, 0);
       textSize(24);
       textAlign(RIGHT);
-      text(altitude, altitudeTape+30, height/1.95);
+      text(Math.round(altitude), altitudeTape+30, height/1.95);
       noFill();
       textSize(15);
     }
   }
   
-  void increaseAltitude()
+  void calculateAltitude()
   {
-    this.altitude +=2;
+    if(pitch > 0 && speedTape.speed > 140)
+    {
+      this.altitude = (((pitch/100 * (speedTape.speed/100)) / 19.8) / timeDelta) + this.altitude;
+    }
+    
+    if(pitch < 0 || speedTape.speed < 140)
+    {
+      this.altitude -= (((pitch/100 * (speedTape.speed/100)) / 19.8) / timeDelta);
+    }
+    
   }
       
 }

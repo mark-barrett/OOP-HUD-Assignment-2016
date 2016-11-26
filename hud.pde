@@ -18,6 +18,7 @@ void setup()
   //Importing sound
   switchSound = new SoundFile(this, "switch.wav");
   batterySound = new SoundFile(this, "battery.wav");
+  bankSound = new SoundFile(this, "bank_angle.wav");
 }
 
 SpeedTape speedTape;
@@ -26,6 +27,8 @@ ArtificialHorizon artificialHorizon;
 CrossHair crossHair;
 Systems mainSystems;
 RollIndicator rollIndicator;
+
+float timeDelta = 1.0f / 60.00f;
 
 float pitch = 0;
 float roll = 0;
@@ -37,6 +40,7 @@ import processing.sound.*;
 //Declaring sounds
 SoundFile switchSound;
 SoundFile batterySound;
+SoundFile bankSound;
 
 //Loading animation variable
 boolean loadingAnimation = false;
@@ -54,6 +58,13 @@ boolean[] keys = new boolean[1000];
 
 void draw()
 {
+  if(frameCount % 60 == 0)
+  {
+    if(roll > 0.8 || roll < -0.8)
+    {
+      bankSound.play();
+    }
+  }
   background(0);
   //Draw Horizon
   artificialHorizon.drawHorizon(mainSystems.battery);
@@ -129,9 +140,14 @@ void draw()
   }
   }
   
+  altitudeTape.calculateAltitude();
+  
   if(checkKey('i'))
   {
-    pitch += 0.75;
+    if(speedTape.speed > 140)
+    {
+      pitch += 0.75;
+    }
   }
   
   if(checkKey('k'))
