@@ -13,6 +13,8 @@ void setup()
   engine1 = new Buttons();
   engine2 = new Buttons();
   gear = new Buttons();
+  radarButton = new Buttons();
+  radar = new Radar();
   
   speedIndicator25 = loadFont("FranklinGothic-Book-25.vlw");
   
@@ -31,6 +33,7 @@ ArtificialHorizon artificialHorizon;
 CrossHair crossHair;
 Systems mainSystems;
 RollIndicator rollIndicator;
+Radar radar;
 
 float timeDelta = 1.0f / 60.00f;
 
@@ -57,6 +60,7 @@ Buttons battery;
 Buttons engine1;
 Buttons engine2;
 Buttons gear;
+Buttons radarButton;
 
 int x = 0;
 
@@ -125,6 +129,8 @@ void draw()
   engine2.drawButton("Eng2", mainSystems.engine2, 20, 100);
   
   gear.drawButton("Gear", mainSystems.gear, 120, 100);
+  
+  radarButton.drawButton("Radar", radar.status, 1160, 200);
   
   //Draw engine indicators
   mainSystems.drawEngineIndicators();
@@ -223,7 +229,7 @@ void draw()
     text("IAS", speedTape.speedTape-40, 575);
     textSize(15);
   }
-      
+  radar.drawRadar();
 }
 
 void keyPressed()
@@ -294,6 +300,16 @@ void mousePressed()
       }
     }
   }
+  
+  //Radar on
+  if(mouseX > 1160 && mouseX < 1235)
+  {
+    if(mouseY > 200 & mouseY < 260)
+    {
+      radar.status ^= true;
+    }
+  }
+  
         
       
 }
