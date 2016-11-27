@@ -12,6 +12,7 @@ void setup()
   battery = new Buttons();
   engine1 = new Buttons();
   engine2 = new Buttons();
+  gear = new Buttons();
   
   speedIndicator25 = loadFont("FranklinGothic-Book-25.vlw");
   
@@ -19,6 +20,8 @@ void setup()
   switchSound = new SoundFile(this, "switch.wav");
   batterySound = new SoundFile(this, "battery.wav");
   bankSound = new SoundFile(this, "bank_angle.wav");
+  gearLever = new SoundFile(this, "gear.wav");
+  gearUp = new SoundFile(this, "gearup.wav");
 }
 
 SpeedTape speedTape;
@@ -41,6 +44,8 @@ import processing.sound.*;
 SoundFile switchSound;
 SoundFile batterySound;
 SoundFile bankSound;
+SoundFile gearLever;
+SoundFile gearUp;
 
 //Loading animation variable
 boolean loadingAnimation = false;
@@ -49,6 +54,7 @@ boolean loadingAnimation = false;
 Buttons battery;
 Buttons engine1;
 Buttons engine2;
+Buttons gear;
 
 int x = 0;
 
@@ -99,6 +105,9 @@ void draw()
   altitudeTape.drawAltitudeTapeIndicator(mainSystems.battery);
   
   altitudeTape.drawAltitudeIndicator(mainSystems.battery);
+  
+  altitudeTape.verticalSpeed();
+  
   noStroke();
   fill(0);
   rect(200, 0, width-200, 99);
@@ -112,6 +121,8 @@ void draw()
   //Draw engine buttons
   engine1.drawButton("Eng1", mainSystems.engine1, 120, 20);
   engine2.drawButton("Eng2", mainSystems.engine2, 20, 100);
+  
+  gear.drawButton("Gear", mainSystems.gear, 120, 100);
   
   //Draw engine indicators
   mainSystems.drawEngineIndicators();
@@ -157,7 +168,7 @@ void draw()
   
   if(checkKey('j'))
   {
-    if(pitch > 0)
+    if(altitudeTape.altitude > 0)
     {
       roll += 0.005;
     }
@@ -165,7 +176,7 @@ void draw()
   
   if(checkKey('l'))
   {
-    if(pitch > 0)
+    if(altitudeTape.altitude > 0)
     {
       roll -= 0.005;
     }
@@ -189,7 +200,16 @@ void draw()
   {
     loadingAnimation();
   }
-    
+  
+  if(mainSystems.battery == true)
+  {
+    fill(0, 255, 0);
+    textSize(25);
+    text("ALT", altitudeTape.altitudeTape+25, 575);
+    text("IAS", speedTape.speedTape-40, 575);
+    textSize(15);
+  }
+      
 }
 
 void keyPressed()
@@ -246,6 +266,22 @@ void mousePressed()
       }
     }
   }
+  
+  //Raise gear
+  if(mouseX > 120 && mouseX < 195)
+  {
+    if(mouseY > 100 && mouseY < 160)
+    {
+      if(mainSystems.battery == true && altitudeTape.altitude > 0)
+      {
+        mainSystems.gear ^= true;
+        gearLever.play();
+        gearUp.play();
+      }
+    }
+  }
+        
+      
 }
 boolean checkKey(int k)
 {

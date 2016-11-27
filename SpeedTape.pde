@@ -5,12 +5,6 @@ class SpeedTape
   int speed;
   float speedTape;
   
-  //SpeedTape Constructor
-  SpeedTape()
-  {
-    
-  }
-  
   void drawSpeedTape(boolean power) {
     if(power == true)
     {
@@ -43,13 +37,13 @@ class SpeedTape
   {
     if(power == true)
     {
-    for(int i = 0; i<height; i+=60)
+    for(int j = 0; j<20000; j+=60)
     {
       fill(0, 255, 0);
-      if(i<1000) {
-      line(speedTape, height/2-i+this.speed*3, speedTape-20, height/2-i+this.speed*3);
+      if(j<1000) {
+      line(speedTape, height/2-j+this.speed*3, speedTape-20, height/2-j+this.speed*3);
       textSize(17);
-      text(i/3, speedTape-50, height/2-i+this.speed*3);
+      text(j/3, speedTape-50, height/2-j+this.speed*3);
       }
     }
     stroke(0);

@@ -3,6 +3,7 @@ class Systems
   boolean battery;
   boolean engine1;
   boolean engine2;
+  boolean gear;
   boolean eng1max = false;
   boolean eng2max = false;
   boolean animate = true;
@@ -19,9 +20,10 @@ class Systems
 
   Systems()
   {
-    this.battery = false;
+    this.battery = true;
     this.engine1 = false;
     this.engine2 = false;
+    this.gear = true;
   }
   
   void displaySystemAlerts(boolean power)
@@ -32,7 +34,7 @@ class Systems
       textSize(25);
       text("EICAS", 48, 185);
       noFill();
-      rect(20, 200, 250, 250);
+      rect(20, 200, 250, 350);
       if(this.engine1 == false)
       {
         textSize(15);
@@ -45,6 +47,12 @@ class Systems
         textSize(15);
         fill(255, 255, 0);
         text("ENG SHUTDOWN 2", 90, height/2+45);
+      }
+      if(this.gear == true)
+      {
+        textSize(15);
+        fill(255);
+        text("GEAR DOWN", 70, height/2+60);
       }
     }
   }
