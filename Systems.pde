@@ -7,6 +7,7 @@ class Systems
   boolean eng1max = false;
   boolean eng2max = false;
   boolean animate = true;
+  boolean stall = false;
   boolean finishedAnimation = false;
   
   float eng1x, eng1y, eng1Thetha = 0;
@@ -53,6 +54,18 @@ class Systems
         textSize(15);
         fill(255);
         text("GEAR DOWN", 70, height/2+60);
+      }
+      else if(this.gear == false)
+      {
+        textSize(15);
+        fill(0, 255, 0);
+        text("GEAR UP", 70, height/2+60);
+      }
+      if(this.stall == true)
+      {
+        textSize(20);
+        fill(255, 0, 0);
+        text("STALL", 58, height/2+90);
       }
     }
   }

@@ -70,9 +70,19 @@ class AltitudeTape
       this.altitude = (((pitch/500 * (speedTape.speed/100)) / 19.8) / timeDelta) + this.altitude;
     }
     
-    if(pitch < 0 || speedTape.speed < 140)
+    if(pitch < 0)
     {
       this.altitude += (((pitch/500 * (speedTape.speed/100)) / 19.8) / timeDelta);
+    }
+    
+    if(altitude > 0 && speedTape.speed < 140)
+    {
+      altitude--;
+      if(frameCount % 60 == 0)
+      {
+        stall.play();
+        mainSystems.stall = true;
+      }
     }
   }
   void verticalSpeed()

@@ -22,6 +22,7 @@ void setup()
   bankSound = new SoundFile(this, "bank_angle.wav");
   gearLever = new SoundFile(this, "gear.wav");
   gearUp = new SoundFile(this, "gearup.wav");
+  stall = new SoundFile(this, "stall.wav");
 }
 
 SpeedTape speedTape;
@@ -46,6 +47,7 @@ SoundFile batterySound;
 SoundFile bankSound;
 SoundFile gearLever;
 SoundFile gearUp;
+SoundFile stall;
 
 //Loading animation variable
 boolean loadingAnimation = false;
@@ -149,6 +151,14 @@ void draw()
       speedTape.increaseSpeed(); 
     }
   }
+  
+  if(speedTape.speed > 0)
+  {
+    if(mainSystems.engine1 == false || mainSystems.engine2 == false)
+    {
+      speedTape.speed -= 1;
+    }
+  }
   }
   
   altitudeTape.calculateAltitude();
@@ -191,6 +201,10 @@ void draw()
   }
   }
   
+  if(speedTape.speed > 140 && mainSystems.stall == true)
+  {
+    mainSystems.stall = false;
+  }
   //Draw the crosshair
   crossHair.drawCrossHair(mainSystems.battery);
   textSize(15);
