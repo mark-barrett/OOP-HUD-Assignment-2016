@@ -16,6 +16,12 @@ void setup()
   radarButton = new Buttons();
   radar = new Radar();
   
+  buttons.add(battery);
+  buttons.add(engine1);
+  buttons.add(engine2);
+  buttons.add(gear);
+  buttons.add(radarButton);
+  
   speedIndicator25 = loadFont("FranklinGothic-Book-25.vlw");
   
   //Importing sound
@@ -35,14 +41,12 @@ Systems mainSystems;
 RollIndicator rollIndicator;
 Radar radar;
 
-float timeDelta = 1.0f / 60.00f;
-
 float pitch = 0;
 float roll = 0;
 
-int time = millis();
-
 import processing.sound.*;
+
+float timeDelta = 1.0f / 60.00f;
 
 //Declaring sounds
 SoundFile switchSound;
@@ -54,6 +58,8 @@ SoundFile stall;
 
 //Loading animation variable
 boolean loadingAnimation = false;
+boolean batteryPressedSound = false;
+boolean playOnce = true;
 
 //Declare buttons
 Buttons battery;
@@ -68,8 +74,25 @@ PFont speedIndicator25;
 
 boolean[] keys = new boolean[1000];
 
+//Buttons array list
+ArrayList<Buttons> buttons = new ArrayList<Buttons>();
+
 void draw()
 {
+  
+  if(batteryPressedSound == true)
+  {
+    println(frameCount);
+    if(playOnce == true)
+    {
+      batterySound.play();
+      playOnce = false;
+    }
+    if (frameCount % 835 == 0)
+    {
+      batterySound.play();
+    }
+  }
   if(frameCount % 60 == 0)
   {
     if(roll > 0.8 || roll < -0.8)
@@ -252,8 +275,8 @@ void mousePressed()
       if(mainSystems.battery == false)
       {
         loadingAnimation = true;
-        switchSound.play(); 
-        batterySound.play();
+        switchSound.play();
+        batteryPressedSound = true;
       }
       else if(mainSystems.battery == true)
       {
@@ -304,9 +327,10 @@ void mousePressed()
   //Radar on
   if(mouseX > 1160 && mouseX < 1235)
   {
-    if(mouseY > 200 & mouseY < 260)
+    if(mouseY > 200 & mouseY < 265)
     {
       radar.status ^= true;
+      switchSound.play();
     }
   }
   
