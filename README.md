@@ -1,9 +1,9 @@
 # OOP-HUD-Assignment-2016
 The HUD Assignment for OOP 2016.
 
-![alt tag](http://i.imgur.com/I3RIybm.png)
-
 The HUD in this assignment is based on the HUD found onboard some of the Boeing 737NG's and a HUD you would find in a modern day/conceptual fighter get. They did not originally get fitted to the 737NG's, and only recently have they been offered as an option to airlines that are ordering these aircraft. These types of HUD's are becoming a vital part in aviation, and have huge advantages that have been conceptualised for the future.
+
+![alt tag](http://i.imgur.com/I3RIybm.png)
 
 ### YouTube Video: ###
 [![Video](https://img.youtube.com/vi/IrT6TGKQOxo/0.jpg)](http://www.youtube.com/watch?v=IrT6TGKQOxo&feature=youtu.be)
